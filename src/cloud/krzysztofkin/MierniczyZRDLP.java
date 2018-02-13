@@ -7,7 +7,7 @@ public class MierniczyZRDLP extends Mierniczy{
 
     @Override
     public float getMiazszosc() {
-        return super.getMiazszosc()+1;
+        return super.getMiazszosc()-1;
     }
 
 }
