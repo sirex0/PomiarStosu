@@ -1,10 +1,12 @@
 package cloud.krzysztofkin;
 
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 
         Mierniczy mierniczy;
         ArrayList<Stos> stosy;
@@ -12,13 +14,17 @@ public class Main {
         stosy = generator.getStosy();
         System.out.println(stosy.size());
 
-        for (Stos stos : stosy) {
-            mierniczy = new MierniczyZRDLP(stos);
-            System.out.print(stos.getMiazszosc());
-            System.out.print(" ");
-            System.out.println(mierniczy.getMiazszosc());
-        }
+        java.io.PrintWriter writer = new java.io.PrintWriter("stos.csv", "UTF-8");
 
+
+        for (Stos stos : stosy) {
+
+            mierniczy = new MierniczyZRDLP(stos);
+            writer.print(stos.getMiazszosc());
+            writer.print(";");
+            writer.println(mierniczy.getMiazszosc());
+        }
+        writer.close();
 
     }
 }
