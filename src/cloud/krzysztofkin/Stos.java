@@ -1,18 +1,20 @@
 package cloud.krzysztofkin;
 
 public class Stos {
+    float h;
     float a;
     float b;
     float c;
 
-    public Stos(float a, float b, float c) {
+    public Stos(float a, float b, float c, float h) {
         this.a = a;
         this.b = b;
         this.c = c;
+        this.h = h;
     }
 
     public String pokazStos() {
-        String opis = (a + " " + b + " " + c);
+        String opis = (String.format("%.2f",a) + ";" + String.format("%.2f",b) + ";" + String.format("%.2f",c)+";"+String.format("%.2f",h));
         return opis;
     }
 
@@ -21,17 +23,17 @@ public class Stos {
     }
 
     public float getMiazszosc() {
-        float miazszosc = a / 2 + b + c / 2;
+        float miazszosc = h*a / 2 + b*h + h*c / 2;
         return miazszosc;
     }
 
     public float getWysokosc(float pozycja) {
         if (pozycja < a) {
-            return pozycja / a;
+            return (pozycja / a)*h;
         } else if (pozycja > a + b) {
-            return (getSzerokosc()-pozycja)/a;
+            return ((getSzerokosc()-pozycja)/c)*h;
         } else {
-            return 1.0f;
+            return h;
         }
     }
 }
