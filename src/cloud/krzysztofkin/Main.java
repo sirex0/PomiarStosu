@@ -15,25 +15,17 @@ public class Main {
         stosy = generator.getStosy();
         System.out.println(stosy.size());
 
-        java.io.PrintWriter writer = new java.io.PrintWriter("stos.csv", "UTF-8");
-        writer.println("a;b;c;h;v0;v1;dv;pdv");
+        java.io.PrintWriter writer = new java.io.PrintWriter("stosUMS.csv", "UTF-8");
+        writer.println("a;b;c;h;v0;v1");
         for (Stos stos : stosy) {
-
-            mierniczy = new MierniczyZRDLP(stos);
+            mierniczy = new MierniczyUMS(stos);
             writer.print(stos.pokazStos());
             writer.print(";");
             writer.print(String.format("%.2f",stos.getMiazszosc()));
             writer.print(";");
-            writer.print(String.format("%.2f",mierniczy.getMiazszosc()));
-            writer.print(";");
-            writer.print(String.format("%.2f",stos.getMiazszosc()-mierniczy.getMiazszosc()));
-            writer.print(";");
-            writer.println(String.format("%.2f",(stos.getMiazszosc()-mierniczy.getMiazszosc())/stos.getMiazszosc()));
-
+            writer.println(String.format("%.2f",mierniczy.getMiazszosc()));
         }
         writer.close();
-
-
 
     }
 }
